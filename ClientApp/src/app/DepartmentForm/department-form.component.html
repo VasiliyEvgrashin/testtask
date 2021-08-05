@@ -1,0 +1,27 @@
+<mat-card>
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="example-container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Department Name</mat-label>
+                            <input matInput placeholder="name" [formControl]="name" required
+                            (change)="namechange()">
+                            <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="example-button-row">
+                        <button mat-button [disabled]="!department" (click)="newClick()">New</button>
+                        <button mat-button [disabled]="!showSave" (click)="saveClick()">Save</button>
+                        <button mat-button [disabled]="!department" (click)="deleteclick()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card>

@@ -1,0 +1,66 @@
+<mat-card>
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="example-container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Employee Name</mat-label>
+                            <input matInput placeholder="name" [formControl]="name" required>
+                            <mat-error *ngIf="name.invalid">{{getErrorNameMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="example-container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Employee Salary</mat-label>
+                            <input matInput placeholder="salary" [formControl]="salary" required>
+                            <mat-error *ngIf="salary.invalid">{{getErrorSalaryMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-chip-list" appearance="fill" style="width: 100%;">
+                        <mat-label>Favorite Skills</mat-label>
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                          <mat-chip
+                            *ngFor="let fruit of fruits"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(fruit)">
+                            {{fruit}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                          </mat-chip>
+                          <input
+                            placeholder="New skill..."
+                            #fruitInput
+                            [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                            {{fruit}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="example-button-row">
+                        <button mat-button (click)="newClick()">New</button>
+                        <button mat-button [disabled]="!employee" (click)="updateitem()">Update</button>
+                        <button mat-button [disabled]="employee" (click)="insertClick()">Insert</button>
+                        <button mat-button [disabled]="!employee" (click)="deleteclick()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-card>

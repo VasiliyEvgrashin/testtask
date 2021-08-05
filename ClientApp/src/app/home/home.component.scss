@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+  }
+
+  .mat-row {
+    background-color: white;
+    transition: 0.3s;
+  }
+  .mat-row:hover {
+    background-color: rgb(181, 154, 231);
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: rgb(216, 209, 228);
+  }
